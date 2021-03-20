@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const tmi = require('tmi.js');
 const getUrls = require('get-urls');
 const got = require('got');
