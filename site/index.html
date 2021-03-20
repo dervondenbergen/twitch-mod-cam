@@ -1,0 +1,58 @@
+<img id="imagecontainer" />
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: none;
+    }
+    
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        transition: all .5s;
+        transform: scale(.9);
+        opacity: 0;
+    }
+    
+    body.visible img {
+        transform: scale(1);
+        opacity: 1;
+    }
+</style>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    var sourcelist = [];
+
+    socket.on(window.location.hash, source => {
+        var listNotEmpty = sourcelist.length > 0;
+        console.log('add to list')
+        sourcelist.push(source);
+        if (!listNotEmpty) {
+            console.log('list empty start')
+            runList();
+        }
+    })
+
+    runList = () => {
+        console.log('show image')
+        source = sourcelist.shift();
+        imagecontainer.src = source;
+        imagecontainer.onload = () => {
+            document.body.classList.add('visible');
+            setTimeout(() => {
+                document.body.classList.remove('visible');
+                console.log('hide image')
+                if (sourcelist.length > 0) {
+                    // setTimeout(() => {
+                        console.log('next list item')
+                        runList();
+                    // }, 1 * 1000)
+                }
+            }, 10 * 1000)
+        }
+    }
+</script>

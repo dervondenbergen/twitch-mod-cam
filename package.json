@@ -1,0 +1,21 @@
+{
+  "name": "twitch-mod-cam",
+  "version": "1.0.0",
+  "description": "get twitch chat images into obs",
+  "private": true,
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "get-urls": "^10.0.0",
+    "got": "^11.8.2",
+    "socket.io": "^4.0.0",
+    "tmi.js": "^1.7.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "PORT=3000 node server.js",
+    "serve": "serve"
+  },
+  "author": "Felix De Montis <hi@felix.dm>",
+  "license": "ISC"
+}
