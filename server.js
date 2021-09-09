@@ -32,7 +32,7 @@ client.connect();
 
 client.on('message', (channel, tags, message, self) => {
     
-    if (tags.mod || 'broadcaster' in tags.badges) {
+    if (tags.mod || tags.badges && 'broadcaster' in tags.badges) {
         
         console.log(`==== ${channel} ====`)
         console.log(`${tags['display-name']}: ${message}`)
